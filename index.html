@@ -1084,8 +1084,10 @@
     });
   });
 
-  // === ФОРМА: ОТПРАВКА В TELEGRAM + GOOGLE TABLES ===
-  document.getElementById('egidaForm').addEventListener('submit', async function(e) {
+  // ============================================================
+  // === ФОРМА: ОТПРАВКА ЧЕРЕЗ GET (БЕЗ ОШИБОК CORS) ===========
+  // ============================================================
+  document.getElementById('egidaForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const name = document.getElementById('userName').value.trim();
@@ -1095,57 +1097,43 @@
     
     // === ВАЛИДАЦИЯ ===
     if (name.length < 2) {
-      status.textContent = '❌ Введите имя (минимум 2 буквы)';
+      status.textContent = 'Введите имя (минимум 2 буквы)';
       status.style.color = '#C9A06A';
       return;
     }
     if (phone.length < 10) {
-      status.textContent = '❌ Введите корректный телефон (например: +7 900 123 45 67)';
+      status.textContent = 'Введите корректный телефон (например: +7 900 123 45 67)';
       status.style.color = '#C9A06A';
       return;
     }
     
-    // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ:
-    const botToken = '8730249810:AAEQKF07ACejRjAZnnBv6kUM_N4jCd_w46w';
-    const chatId = '1193720669';
-    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzb2TzkVRzjzkpeGcS88zWNxfr7rvuaq2MpUJN73FkXjlUqb9bNsYRtBwMC1gvs464SEw/exec';
+    // ⚠️ ЗАМЕНИТЕ НА ВАШ URL ОТ APPS SCRIPT:
+    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwkcuy42DcOh7j2uroK93yfMupSpL6aXS6MrJC-AP5-GM5386hcr-cX2NeFDf8rZHPBGQ/exec';
     
-    const message = `✅ НОВАЯ ЗАЯВКА ЭГИДА
-━━━━━━━━━━━━━━━
-👤 Имя: ${name}
-📱 Телефон: ${phone}
-💬 Telegram: ${tg || 'не указан'}
-📅 Дата: ${new Date().toLocaleString('ru-RU')}
-━━━━━━━━━━━━━━━`;
+    // === ОТПРАВКА ЧЕРЕЗ GET (без CORS) ===
+    const url = `${googleScriptUrl}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&tg=${encodeURIComponent(tg)}`;
     
-    try {
-      status.textContent = '⏳ Отправка...';
-      status.style.color = '#BDB1A1';
-      
-      // 1. Отправка в Telegram
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text: message })
+    status.textContent = 'Отправка...';
+    status.style.color = '#BDB1A1';
+    
+    fetch(url, { method: 'GET' })
+      .then(response => response.text())
+      .then(data => {
+        if (data.includes('success') || data.includes('OK') || data.includes('ok')) {
+          status.textContent = '✅ Заявка отправлена! Я свяжусь с вами.';
+          status.style.color = '#C9A06A';
+          document.getElementById('userName').value = '';
+          document.getElementById('userPhone').value = '';
+          document.getElementById('userTg').value = '';
+        } else {
+          status.textContent = 'Ошибка. Попробуйте позже.';
+          status.style.color = '#B8835A';
+        }
+      })
+      .catch(() => {
+        status.textContent = 'Ошибка. Проверьте интернет и попробуйте снова.';
+        status.style.color = '#B8835A';
       });
-      
-      // 2. Отправка в Google Таблицу
-      await fetch(googleScriptUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, tg })
-      });
-      
-      status.textContent = '✅ Заявка отправлена! Я свяжусь с вами в ближайшее время.';
-      status.style.color = '#C9A06A';
-      document.getElementById('userName').value = '';
-      document.getElementById('userPhone').value = '';
-      document.getElementById('userTg').value = '';
-      
-    } catch (error) {
-      status.textContent = '❌ Ошибка. Попробуйте позже или напишите в Telegram @egida_kazan';
-      status.style.color = '#B8835A';
-    }
   });
 </script>
 
