@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЭГИДА — территория для сильных агентов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FAF6F0;
+    --ivory-deep:#F2ECE2;
+    --ink:#231F1B;
+    --ink-soft:#5C534A;
+    --bronze-1:#B8835A;
+    --bronze-2:#8B5E3C;
+    --gold:#C9A06A;
+    --line:#E3DACB;
+    --dark:#231F1B;
+    --dark-2:#2E2823;
+    --cream-on-dark:#F4EDE2;
+    --max:1240px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--bronze-2);
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .eyebrow::before{
+    content:'';
+    display:block;
+    width:28px;height:1px;
+    background:var(--bronze-2);
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(250,246,240,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    max-width:var(--max);margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-weight:600;font-size:21px;
+    letter-spacing:0.04em;
+  }
+  .logo svg{height:30px;width:auto;}
+  .nav-links{display:flex;gap:36px;align-items:center;}
+  .nav-links a{
+    font-size:14.5px;color:var(--ink-soft);
+    transition:color .2s;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;letter-spacing:0.08em;
+    padding:11px 22px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+    text-transform:uppercase;
+    transition:all .25s;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--ivory);}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:120px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(44px,6.4vw,84px);
+    margin:22px 0 28px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(105deg,var(--bronze-1),var(--gold) 55%,var(--bronze-2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:40px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn-primary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--ink);color:var(--ivory);
+    padding:18px 32px;border-radius:2px;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .25s, box-shadow .25s;
+    box-shadow:0 1px 0 rgba(0,0,0,0.05);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(35,31,27,0.5);}
+  .btn-secondary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--ink);
+    padding:18px 6px;
+    border-bottom:1px solid var(--ink);
+    transition:opacity .2s;
+  }
+  .btn-secondary:hover{opacity:0.6;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1.05;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-visual svg{width:100%;height:100%;}
+  .hero-badge{
+    position:absolute;bottom:6%;left:50%;
+    transform:translateX(-50%);
+    background:var(--ivory);
+    border:1px solid var(--line);
+    padding:16px 26px;
+    display:flex;gap:24px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--ink-soft);
+    white-space:nowrap;
+    box-shadow:0 12px 40px -16px rgba(35,31,27,0.18);
+  }
+  .hero-badge b{
+    display:block;font-family:'Fraunces',serif;font-size:22px;color:var(--ink);font-weight:600;
+  }
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{max-width:380px;margin:0 auto;order:-1;}
+    .hero{padding:60px 0 70px;}
+  }
+
+  /* ============ MARQUEE ============ */
+  .trustline{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+    overflow:hidden;
+  }
+  .trustline-track{
+    display:flex;gap:64px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.06em;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    animation:scroll 38s linear infinite;
+  }
+  .trustline-track span{display:flex;align-items:center;gap:64px;}
+  .trustline-track span::after{content:'•';color:var(--gold);}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .trustline-track{animation:none;}
+  }
+
+  /* ============ SECTION BASE ============ */
+  section{padding:120px 0;}
+  .section-head{
+    max-width:680px;
+    margin-bottom:64px;
+  }
+  .section-head h2{font-size:clamp(32px,4.4vw,52px);margin-top:18px;}
+  .section-head p{color:var(--ink-soft);font-size:17px;margin-top:18px;max-width:580px;}
+
+  /* ============ PAIN -> SOLUTION ============ */
+  .flip-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .flip-card{
+    background:var(--ivory);
+    padding:40px;
+    display:flex;flex-direction:column;gap:18px;
+    transition:background .3s;
+  }
+  .flip-card.before{background:var(--ivory-deep);}
+  .flip-row-label{
+    grid-column:1/-1;
+    background:var(--dark);
+    color:var(--cream-on-dark);
+    padding:16px 40px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    display:flex;justify-content:space-between;
+  }
+  .flip-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .flip-tag.before{color:#A8826A;}
+  .flip-tag.after{color:var(--bronze-2);}
+  .flip-card h4{font-size:21px;font-weight:500;font-style:italic;}
+  .flip-card p{color:var(--ink-soft);font-size:15.5px;}
+
+  @media (max-width:760px){
+    .flip-grid{grid-template-columns:1fr;}
+    .flip-row-label{display:none;}
+    .flip-card{border-bottom:1px solid var(--line);}
+  }
+
+  /* ============ ONE WINDOW PRINCIPLE ============ */
+  .window-section{
+    background:var(--dark);
+    color:var(--cream-on-dark);
+    border-radius:0;
+  }
+  .window-section .eyebrow{color:var(--gold);}
+  .window-section .eyebrow::before{background:var(--gold);}
+  .window-section .section-head h2{color:var(--cream-on-dark);}
+  .window-section .section-head p{color:#BDB1A1;}
+
+  .window-flow{
+    display:flex;
+    gap:0;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(244,237,226,0.14);
+  }
+  .window-step{
+    flex:1;min-width:200px;
+    padding:36px 28px;
+    border-right:1px solid rgba(244,237,226,0.14);
+    border-bottom:1px solid rgba(244,237,226,0.14);
+    position:relative;
+  }
+  .window-step:last-child{border-right:none;}
+  .window-step .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--gold);letter-spacing:0.1em;
+    margin-bottom:18px;display:block;
+  }
+  .window-step h4{font-size:19px;font-weight:500;margin-bottom:10px;color:var(--cream-on-dark);}
+  .window-step p{font-size:14.5px;color:#BDB1A1;}
+  .window-step::after{
+    content:'→';
+    position:absolute;right:-14px;top:36px;
+    font-size:18px;color:var(--gold);
+    font-family:'Fraunces',serif;
+    z-index:2;
+  }
+  .window-step:last-child::after{display:none;}
+  @media (max-width:900px){
+    .window-step{border-right:none;flex:1 1 100%;}
+    .window-step::after{display:none;}
+  }
+
+  /* ============ SERVICES ============ */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .service-card{
+    border:1px solid var(--line);
+    padding:36px 28px;
+    background:var(--ivory);
+    display:flex;flex-direction:column;
+    gap:20px;
+    min-height:260px;
+    transition:border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .service-card:hover{
+    border-color:var(--bronze-1);
+    transform:translateY(-4px);
+    box-shadow:0 16px 36px -22px rgba(35,31,27,0.35);
+  }
+  .service-icon{width:38px;height:38px;}
+  .service-card h4{font-size:19px;font-weight:500;margin-top:auto;}
+  .service-card p{font-size:14px;color:var(--ink-soft);}
+  .service-mark{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;
+  }
+
+  @media (max-width:1080px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.services-grid{grid-template-columns:1fr;}}
+
+  /* ============ SPACE / GALLERY ============ */
+  .space-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    grid-template-rows:repeat(2,260px);
+    gap:16px;
+  }
+  .space-tile{
+    position:relative;
+    border-radius:2px;
+    overflow:hidden;
+    background:var(--ivory-deep);
+    border:1px solid var(--line);
+  }
+  .space-tile.big{grid-row:span 2;}
+  .space-tile img{width:100%;height:100%;object-fit:cover;}
+  .space-tile-label{
+    position:absolute;left:0;bottom:0;
+    padding:20px 24px;
+    background:linear-gradient(to top, rgba(35,31,27,0.78), transparent);
+    color:var(--cream-on-dark);
+    width:100%;
+  }
+  .space-tile-label .eyebrow{color:var(--gold);margin-bottom:6px;}
+  .space-tile-label .eyebrow::before{background:var(--gold);}
+  .space-tile-label h4{font-size:21px;color:var(--cream-on-dark);font-weight:500;}
+
+  @media (max-width:880px){
+    .space-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+    .space-tile{height:280px;}
+    .space-tile.big{grid-row:auto;height:340px;}
+  }
+
+  /* ============ PRICING ============ */
+  .pricing-table{
+    border:1px solid var(--line);
+    background:var(--ivory);
+  }
+  .pricing-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  .pricing-row:last-child{border-bottom:none;}
+  .pricing-row.head{
+    background:var(--dark);
+    color:var(--cream-on-dark);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .pricing-row.head div{color:#BDB1A1;}
+  .pricing-row div{padding:24px 28px;}
+  .pricing-row .service-name{font-family:'Fraunces',serif;font-size:19px;font-weight:500;}
+  .pricing-row .service-desc{
+    font-size:13.5px;color:var(--ink-soft);margin-top:6px;font-family:'Inter',sans-serif;
+  }
+  .pricing-row .price{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+  }
+  .pricing-row .split{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;color:var(--bronze-2);
+  }
+  @media (max-width:760px){
+    .pricing-row{grid-template-columns:1fr;}
+    .pricing-row.head{display:none;}
+    .pricing-row div{padding:14px 24px;}
+    .pricing-row .price::before{content:'Стоимость: ';color:var(--ink-soft);font-size:12px;}
+    .pricing-row .split::before{content:'Условие: ';color:var(--ink-soft);font-size:12px;}
+  }
+  .pricing-footnote{
+    margin-top:24px;
+    font-size:14px;color:var(--ink-soft);
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .pricing-footnote svg{flex-shrink:0;margin-top:3px;}
+
+  /* ============ VALUES / FOR WHOM ============ */
+  .values-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .value-card{
+    background:var(--ivory);
+    padding:44px 32px;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .value-num{
+    font-family:'Fraunces',serif;font-size:48px;font-weight:300;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--gold);
+  }
+  .value-card h4{font-size:20px;font-weight:500;}
+  .value-card p{font-size:14.5px;color:var(--ink-soft);}
+  @media (max-width:880px){.values-grid{grid-template-columns:1fr;}}
+
+  /* ============ FOUNDER ============ */
+  .founder{
+    display:grid;grid-template-columns:0.8fr 1.2fr;gap:72px;align-items:center;
+  }
+  .founder-photo{
+    aspect-ratio:4/5;
+    background:var(--ivory-deep);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .founder-photo img{width:100%;height:100%;object-fit:cover;}
+  .founder-quote-mark{
+    font-family:'Fraunces',serif;font-size:120px;line-height:1;
+    color:var(--gold);font-weight:300;
+    margin-bottom:-20px;
+  }
+  .founder blockquote{
+    font-family:'Fraunces',serif;
+    font-size:clamp(24px,3vw,34px);
+    font-style:italic;font-weight:400;
+    line-height:1.4;
+    margin-bottom:32px;
+  }
+  .founder-name{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;}
+  .founder-name b{display:block;font-family:'Fraunces',serif;font-size:20px;font-weight:600;letter-spacing:0;margin-bottom:4px;}
+  .founder-stats{display:flex;gap:48px;margin-top:40px;flex-wrap:wrap;}
+  .founder-stat b{font-family:'Fraunces',serif;font-size:32px;display:block;font-weight:600;}
+  .founder-stat span{font-size:13px;color:var(--ink-soft);}
+
+  @media (max-width:900px){
+    .founder{grid-template-columns:1fr;gap:40px;}
+    .founder-photo{max-width:320px;}
+  }
+
+  /* ============ FAQ ============ */
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{
+    border-bottom:1px solid var(--line);
+    padding:28px 0;
+    cursor:pointer;
+  }
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+    font-family:'Fraunces',serif;font-size:20px;font-weight:500;
+  }
+  .faq-q .plus{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:20px;color:var(--bronze-2);
+    transition:transform .3s;
+    flex-shrink:0;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s ease, opacity .3s ease, margin-top .3s ease;
+    opacity:0;
+    font-size:15.5px;color:var(--ink-soft);
+    max-width:680px;
+  }
+  .faq-item.open .faq-a{max-height:300px;opacity:1;margin-top:16px;}
+
+  /* ============ FINAL CTA ============ */
+  .final-cta{
+    background:linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+    color:var(--cream-on-dark);
+    border-radius:2px;
+    padding:90px 64px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,160,106,0.16), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(184,131,90,0.14), transparent 45%);
+    pointer-events:none;
+  }
+  .final-cta-inner{position:relative;z-index:1;}
+  .final-cta .eyebrow{justify-content:center;color:var(--gold);margin-bottom:24px;}
+  .final-cta .eyebrow::before{background:var(--gold);}
+  .final-cta h2{
+    font-size:clamp(34px,5.5vw,64px);
+    color:var(--cream-on-dark);
+    max-width:760px;margin:0 auto 22px;
+  }
+  .final-cta h2 em{
+    font-style:italic;font-weight:400;
+    background:linear-gradient(105deg,var(--bronze-1),var(--gold) 55%,#E7CFA8);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .final-cta p{color:#BDB1A1;max-width:540px;margin:0 auto 40px;font-size:17px;}
+  .final-cta-form{
+    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;
+  }
+  .final-cta-form input{
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:18px 22px;
+    border:1px solid rgba(244,237,226,0.22);
+    background:rgba(244,237,226,0.05);
+    color:var(--cream-on-dark);
+    border-radius:2px;
+    min-width:220px;
+    outline:none;
+    transition:border-color .2s;
+  }
+  .final-cta-form input::placeholder{color:#8C8377;}
+  .final-cta-form input:focus{border-color:var(--gold);}
+  .final-cta-form button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    background:linear-gradient(105deg,var(--bronze-1),var(--gold));
+    color:var(--dark);
+    padding:18px 32px;
+    border:none;border-radius:2px;
+    cursor:pointer;
+    transition:transform .25s;
+  }
+  .final-cta-form button:hover{transform:translateY(-2px);}
+  .final-cta-note{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8C8377;letter-spacing:0.04em;}
+
+  @media (max-width:600px){
+    .final-cta{padding:64px 24px;}
+    .final-cta-form input{min-width:100%;}
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    border-top:1px solid var(--line);
+    padding:64px 0 32px;
+  }
+  .footer-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:48px;
+    margin-bottom:64px;
+  }
+  .footer-brand .logo{margin-bottom:16px;}
+  .footer-brand p{color:var(--ink-soft);font-size:14px;max-width:280px;}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .footer-col h5{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--bronze-2);margin-bottom:18px;
+  }
+  .footer-col a, .footer-col p{
+    display:block;font-size:14.5px;color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .footer-col a:hover{color:var(--ink);}
+  .footer-bottom{
+    border-top:1px solid var(--line);
+    padding-top:24px;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--ink-soft);letter-spacing:0.04em;
+  }
+
+  /* ============ MISC ============ */
+  .reveal{
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  ::selection{background:var(--gold);color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="100" y2="110" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#D9BB95"/>
+            <stop offset="0.5" stop-color="#B8835A"/>
+            <stop offset="1" stop-color="#8B5E3C"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 4 L92 22 V52 C92 80 73 98 50 106 C27 98 8 80 8 52 V22 Z" stroke="url(#lg1)" stroke-width="4" fill="none"/>
+        <path d="M50 18 L78 30 V52 C52 72 64 86 50 92 C36 86 22 72 22 52 V30 Z" stroke="url(#lg1)" stroke-width="3" fill="none" opacity="0.6"/>
+        <line x1="50" y1="4" x2="50" y2="106" stroke="url(#lg1)" stroke-width="2.5"/>
+      </svg>
+      ЭГИДА
+    </div>
+    <div class="nav-links">
+      <a href="#problem">Боли агента</a>
+      <a href="#model">Принцип ЭГИДА</a>
+      <a href="#services">Сервисы</a>
+      <a href="#space">Пространство</a>
+      <a href="#prices">Прайс</a>
+      <a href="#faq">Вопросы</a>
+    </div>
+    <a href="#join" class="nav-cta">Записаться на экскурсию</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Открытие в Казани · середина июля</div>
+      <h1>Территория для <em>сильных</em>,<br>свободных агентов</h1>
+      <p class="lede">ЭГИДА — пространство и сервис для независимых риелторов: коворкинг, переговорные, подкаст-студия и полная инфраструктура поддержки — юридическая защита сделки, сопровождение, ипотечный брокеридж. Свободное сотрудничество, защита в каждой сделке.</p>
+      <div class="hero-ctas">
+        <a href="#join" class="btn-primary">Записаться на экскурсию →</a>
+        <a href="#prices" class="btn-secondary">Смотреть прайс</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heroShield" x1="0" y1="0" x2="400" y2="440" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#E7CFA8"/>
+            <stop offset="0.5" stop-color="#B8835A"/>
+            <stop offset="1" stop-color="#8B5E3C"/>
+          </linearGradient>
+          <linearGradient id="heroShield2" x1="400" y1="0" x2="0" y2="440" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#C9A06A"/>
+            <stop offset="1" stop-color="#8B5E3C"/>
+          </linearGradient>
+        </defs>
+        <path d="M200 14 L368 86 V206 C368 318 292 392 200 426 C108 392 32 318 32 206 V86 Z" stroke="url(#heroShield)" stroke-width="2" fill="none" opacity="0.35"/>
+        <path d="M200 50 L334 108 V206 C206 300 274 362 200 392 C126 362 66 300 66 206 V108 Z" stroke="url(#heroShield2)" stroke-width="2" fill="none" opacity="0.5"/>
+        <path d="M200 86 L300 128 V206 C300 282 256 332 200 358 C144 332 100 282 100 206 V128 Z" stroke="url(#heroShield)" stroke-width="2.5" fill="none"/>
+        <line x1="200" y1="14" x2="200" y2="426" stroke="url(#heroShield2)" stroke-width="1" opacity="0.4"/>
+        <circle cx="200" cy="206" r="3" fill="#C9A06A"/>
+      </svg>
+      <div class="hero-badge">
+        <div><b>130 м²</b>центр Казани</div>
+        <div><b>4 сервиса</b>под одной крышей</div>
+        <div><b>15–25</b>мест для резидентов</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUSTLINE ============ -->
+<div class="trustline">
+  <div class="trustline-track">
+    <span>Юридическая проверка объектов</span>
+    <span>Сопровождение сделок · МСС</span>
+    <span>Ипотечный брокеридж</span>
+    <span>Коворкинг и переговорные</span>
+    <span>Подкаст-студия и рилс-зона</span>
+    <span>Юридическая проверка объектов</span>
+    <span>Сопровождение сделок · МСС</span>
+    <span>Ипотечный брокеридж</span>
+    <span>Коворкинг и переговорные</span>
+    <span>Подкаст-студия и рилс-зона</span>
+  </div>
+</div>
+
+<!-- ============ PROBLEM / PAIN ============ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Знакомая ситуация</div>
+      <h2>Сильный агент получает<br>условия новичка</h2>
+      <p>Десять лет в недвижимости и четыре года внутри операционной системы крупного агентства — я видела одну и ту же картину снова и снова. Вот что мы меняем.</p>
+    </div>
+
+    <div class="flip-grid reveal">
+      <div class="flip-row-label"><span>В найме</span><span>В ЭГИДА</span></div>
+
+      <div class="flip-card before">
+        <span class="flip-tag before">Было</span>
+        <h4>«Меня уравнивают с теми, кто не дотягивает»</h4>
+        <p>Одна и та же отчётность, один и тот же план — независимо от твоей базы, репутации и результата.</p>
+      </div>
+      <div class="flip-card after">
+        <span class="flip-tag after">Стало</span>
+        <h4>Признание силы</h4>
+        <p>Никаких общих планов и единых KPI. Ты сам определяешь темп и формат своей работы.</p>
+      </div>
+
+      <div class="flip-card before">
+        <span class="flip-tag before">Было</span>
+        <h4>«Меня контролируют те, кто сам не продаёт»</h4>
+        <p>РОПы, собрания, разгоны — административная функция стоит над результатом.</p>
+      </div>
+      <div class="flip-card after">
+        <span class="flip-tag after">Стало</span>
+        <h4>Свобода без надзора</h4>
+        <p>В ЭГИДА нет роли руководителя отдела продаж.</p>
+      </div>
+
+      <div class="flip-card before">
+        <span class="flip-tag before">Было</span>
+        <h4>«Не понимаю, когда и сколько я получу»</h4>
+        <p>Комиссия — «по графику», который определяет компания, иногда с непрозрачными вычетами.</p>
+      </div>
+      <div class="flip-card after">
+        <span class="flip-tag after">Стало</span>
+        <h4>Честный прайс и фиксированные пропорции</h4>
+        <p>Утверждённый прайс, понятные сплиты, расчёты в той пропорции, что оговорена изначально.</p>
+      </div>
+
+      <div class="flip-card before">
+        <span class="flip-tag before">Было</span>
+        <h4>«Отчётность ради отчётности»</h4>
+        <p>Таблицы и созвоны «для галочки» — а когда реально нужна помощь в сделке, помогать некому.</p>
+      </div>
+      <div class="flip-card after">
+        <span class="flip-tag after">Стало</span>
+        <h4>Поддержка ровно там, где она нужна</h4>
+        <p>Нет формальной отчётности. Есть юрист, МСС и брокеридж — именно когда сделка требует поддержки.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONE WINDOW PRINCIPLE ============ -->
+<section id="model" class="window-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Принцип одного окна</div>
+      <h2>Юрист, сопровождение, ипотека<br>и рабочее место — в одном пространстве</h2>
+      <p>Когда я строила систему сопровождения сделок в Альтере, главная задача была — убрать разрывы между этапами. В ЭГИДА этот принцип доведён до конца: всё нужное агенту находится в той же комнате, где он работает каждый день.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="window-flow reveal">
+      <div class="window-step">
+        <span class="num">01 / Объект</span>
+        <h4>Юридическая проверка</h4>
+        <p>Полная проверка документов и истории объекта — до того, как агент выходит на сделку с клиентом.</p>
+      </div>
+      <div class="window-step">
+        <span class="num">02 / Сделка</span>
+        <h4>Сопровождение · МСС</h4>
+        <p>Координация всех этапов — от аванса до регистрации перехода права. Без бюрократии и созвонов «для галочки».</p>
+      </div>
+      <div class="window-step">
+        <span class="num">03 / Финансирование</span>
+        <h4>Ипотечный брокеридж</h4>
+        <p>Подбор и оформление ипотеки для клиента — часто решающий фактор для закрытия сделки.</p>
+      </div>
+      <div class="window-step">
+        <span class="num">04 / Среда</span>
+        <h4>Коворкинг и студии</h4>
+        <p>Рабочее место, переговорные, подкаст-студия и рилс-зона — для встреч, звонков и личного бренда.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Что входит</div>
+      <h2>Четыре направления.<br>Один прайс. Без навязывания</h2>
+      <p>Каждая услуга — отдельная, по утверждённому прайсу, и подключается по желанию. Никто не «включает» тебе сервис без твоего решения.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none"><path d="M20 4 L34 10 V20 C34 28 28 34 20 36 C12 34 6 28 6 20 V10 Z" stroke="#B8835A" stroke-width="2"/><path d="M13 19 L19 25 L28 14" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="service-mark">Защита сделки</span>
+        <h4>Юридическая проверка объектов</h4>
+        <p>Проверка истории, документов и рисков объекта — то, с чего начинается настоящая защита клиента и репутации агента.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#B8835A" stroke-width="2"/><path d="M20 11 V20 L26 24" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="service-mark">МСС</span>
+        <h4>Сопровождение сделки от А до Я</h4>
+        <p>Координация всех этапов — от внесения аванса до регистрации перехода права. Агенту не нужно держать в голове десятки процессуальных деталей.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="2" stroke="#B8835A" stroke-width="2"/><path d="M6 16 H34" stroke="#8B5E3C" stroke-width="2"/><circle cx="12" cy="23" r="1.5" fill="#8B5E3C"/></svg>
+        <span class="service-mark">Брокеридж</span>
+        <h4>Ипотечное сопровождение клиента</h4>
+        <p>Подбор программы, переговоры с банками и оформление — для клиента это часто решающий аргумент.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none"><rect x="5" y="8" width="30" height="24" rx="2" stroke="#B8835A" stroke-width="2"/><path d="M14 32 H26" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="18" r="4" stroke="#8B5E3C" stroke-width="1.6"/></svg>
+        <span class="service-mark">Среда и контент</span>
+        <h4>Коворкинг, переговорные, студии</h4>
+        <p>Рабочее место на целый день, три переговорные под разные задачи, подкаст-студия и рилс-мейкер зона для личного бренда.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACE ============ -->
+<section id="space">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">130 м² в центре Казани</div>
+      <h2>Пространство, спроектированное<br>под рабочий день агента</h2>
+      <p>Каждая зона продумана от реального опыта: какие встречи проводят агенты, как часто звонят клиентам, где удобно подписывать документы, а где — спокойно поработать с ноутбуком.</p>
+    </div>
+
+    <div class="space-grid reveal">
+      <div class="space-tile big">
+        <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?q=80&w=1400&auto=format&fit=crop" alt="Зона коворкинга ЭГИДА">
+        <div class="space-tile-label">
+          <div class="eyebrow">Коворкинг</div>
+          <h4>Открытая рабочая зона</h4>
+        </div>
+      </div>
+      <div class="space-tile">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop" alt="Переговорная для встреч с клиентами">
+        <div class="space-tile-label">
+          <div class="eyebrow">Переговорная I</div>
+          <h4>Для встреч с клиентами</h4>
+        </div>
+      </div>
+      <div class="space-tile">
+        <img src="https://images.unsplash.com/photo-1590650046871-92c887180603?q=80&w=1200&auto=format&fit=crop" alt="Подкаст-студия и рилс-зона">
+        <div class="space-tile-label">
+          <div class="eyebrow">Студия</div>
+          <h4>Подкаст и рилс-мейкер зона</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="prices">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Прозрачно с первого дня</div>
+      <h2>Утверждённый прайс.<br>Без «внутренних регламентов»</h2>
+      <p>Все услуги — по прайсу, который ты видишь заранее. Все сплиты — в той пропорции, что оговорена изначально. Подключаешь то, что нужно конкретной сделке.</p>
+    </div>
+
+    <div class="pricing-table reveal">
+      <div class="pricing-row head">
+        <div>Услуга</div>
+        <div>Стоимость</div>
+        <div>Условие для агента</div>
+      </div>
+      <div class="pricing-row">
+        <div>
+          <div class="service-name">Юридическая проверка объекта</div>
+          <div class="service-desc">Полный анализ документов и истории объекта перед сделкой</div>
+        </div>
+        <div class="price">от 8 000 ₽</div>
+        <div class="split">по факту, без обязательств</div>
+      </div>
+      <div class="pricing-row">
+        <div>
+          <div class="service-name">Сопровождение сделки (МСС)</div>
+          <div class="service-desc">Координация от аванса до регистрации перехода права</div>
+        </div>
+        <div class="price">фикс. % от сделки</div>
+        <div class="split">фиксированный сплит</div>
+      </div>
+      <div class="pricing-row">
+        <div>
+          <div class="service-name">Ипотечный брокеридж</div>
+          <div class="service-desc">Подбор и оформление ипотечной программы для клиента</div>
+        </div>
+        <div class="price">по тарифам банков</div>
+        <div class="split">комиссия не из кармана агента</div>
+      </div>
+      <div class="pricing-row">
+        <div>
+          <div class="service-name">Место в коворкинге</div>
+          <div class="service-desc">Постоянное рабочее место + доступ к переговорным и студиям</div>
+        </div>
+        <div class="price">от 12 000 ₽/мес</div>
+        <div class="split">ограниченное число мест</div>
+      </div>
+      <div class="pricing-row">
+        <div>
+          <div class="service-name">Переговорная / студия — почасово</div>
+          <div class="service-desc">Бронирование для встреч, звонков или записи контента</div>
+        </div>
+        <div class="price">от 600 ₽/час</div>
+        <div class="split">для резидентов — приоритет</div>
+      </div>
+    </div>
+
+    <div class="pricing-footnote">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#B8835A"/><path d="M9 5 V10" stroke="#B8835A" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r="0.8" fill="#B8835A"/></svg>
+      <span>Точные тарифы и сплиты по каждому направлению — лично, на экскурсии до открытия. Прайс будет размещён на стенде ресепшн в открытом доступе для всех резидентов.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR WHOM ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Для кого ЭГИДА</div>
+      <h2>Для тех, кто перерос<br>формат «агент в найме»</h2>
+    </div>
+
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <h4>Сильный агент в найме</h4>
+        <p>Закрываешь сделки, выстроил базу и репутацию — но получаешь те же требования, что и новичок. Устал от планов и «разгонов».</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <h4>Самозанятый / ИП без офиса</h4>
+        <p>Работаешь на себя, но нужна инфраструктура: переговорки, юрист, сопровождение сделок — без классического найма.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <h4>Тот, кто хочет среду сильных</h4>
+        <p>Готов к свободе и ответственности — и хочет работать рядом с такими же профессионалами, а не один на один с задачами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section>
+  <div class="wrap founder reveal">
+    <div class="founder-photo">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=900&auto=format&fit=crop" alt="Виктория Сергеева">
+    </div>
+    <div>
+      <div class="eyebrow">Кто стоит за ЭГИДА</div>
+      <div class="founder-quote-mark">«</div>
+      <blockquote>Я не пришла со стороны рассказывать агентам, как им работать. Я десять лет была внутри этой системы — строила её, управляла ей. ЭГИДА — это то пространство, которое я сама хотела бы иметь, когда работала в найме.</blockquote>
+      <div class="founder-name">
+        <b>Виктория Сергеева</b>
+        Юрист в недвижимости · 10 лет практики
+      </div>
+      <div class="founder-stats">
+        <div class="founder-stat"><b>10 лет</b><span>в недвижимости</span></div>
+        <div class="founder-stat"><b>4 года</b><span>во главе службы сопровождения сделок</span></div>
+        <div class="founder-stat"><b>100+</b><span>проверенных объектов лично</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Вопросы и ответы</div>
+      <h2>Если что-то непонятно —<br>скорее всего, это здесь</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <div class="faq-q"><span>А как же контроль качества без РОПов и отчётности?</span><span class="plus">+</span></div>
+        <div class="faq-a">Структура есть там, где она реально нужна — в юридической проверке, сопровождении сделки, расчётах. А там, где раньше был контроль «для галочки» — планы, разгоны, обязательные таблицы — просто пустота. Ты сам решаешь, как работать с клиентами.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Обязательно ли пользоваться юристом и МСС по каждой сделке?</span><span class="plus">+</span></div>
+        <div class="faq-a">Нет. Все услуги — добровольные, по утверждённому прайсу. Подключаешь то, что нужно конкретной сделке, и платишь только за это.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Как устроены расчёты и сплиты?</span><span class="plus">+</span></div>
+        <div class="faq-a">По прайсу, который ты видишь заранее, и в пропорции, оговорённой изначально — без изменений «по ходу» и без скрытых вычетов.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Сколько мест в коворкинге и есть ли ограничение?</span><span class="plus">+</span></div>
+        <div class="faq-a">Пространство рассчитано на 15–25 постоянных резидентов — чтобы сохранить атмосферу среды сильных, а не превратиться в проходной двор.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Можно посмотреть пространство до открытия?</span><span class="plus">+</span></div>
+        <div class="faq-a">Да. Я лично проведу экскурсию для каждого, кто хочет посмотреть пространство до официального открытия в середине июля.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="join">
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <div class="final-cta-inner">
+        <div class="eyebrow">Открытие — середина июля</div>
+        <h2>Пространство готово<br>принять <em>первых агентов</em></h2>
+        <p>Количество мест ограничено — 15–25 резидентов. Запишись на экскурсию до открытия, и я лично покажу пространство.</p>
+        <form class="final-cta-form" id="egidaForm">
+          <input type="text" id="userName" placeholder="Ваше имя" required>
+          <input type="tel" id="userPhone" placeholder="Телефон" required>
+          <input type="text" id="userTg" placeholder="Telegram (необязательно)">
+          <button type="submit">Записаться →</button>
+        </form>
+        <div id="formStatus" class="final-cta-note">Или напишите в директ слово «ЭГИДА» — пришлю адрес</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 4 L92 22 V52 C92 80 73 98 50 106 C27 98 8 80 8 52 V22 Z" stroke="#B8835A" stroke-width="4" fill="none"/>
+            <line x1="50" y1="4" x2="50" y2="106" stroke="#8B5E3C" stroke-width="2.5"/>
+          </svg>
+          ЭГИДА
+        </div>
+        <p>Свободное сотрудничество, защита в каждой сделке. Территория для независимых агентов недвижимости.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Навигация</h5>
+          <a href="#problem">Боли агента</a>
+          <a href="#model">Принцип ЭГИДА</a>
+          <a href="#services">Сервисы</a>
+          <a href="#prices">Прайс</a>
+        </div>
+        <div class="footer-col">
+          <h5>Контакты</h5>
+          <p>Казань, центр города</p>
+          <a href="#">Telegram: @egida_kazan</a>
+          <a href="#">+7 (___) ___-__-__</a>
+        </div>
+        <div class="footer-col">
+          <h5>Открытие</h5>
+          <p>Середина июля 2025</p>
+          <p>15–25 резидентов</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ЭГИДА</span>
+      <span>Свободное сотрудничество, защита в каждой сделке</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // === АНИМАЦИЯ ПРИ СКРОЛЛЕ ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // === FAQ АККОРДЕОН ===
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // === ФОРМА: ОТПРАВКА В TELEGRAM + GOOGLE TABLES ===
+  document.getElementById('egidaForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('userName').value.trim();
+    const phone = document.getElementById('userPhone').value.trim();
+    const tg = document.getElementById('userTg').value.trim();
+    const status = document.getElementById('formStatus');
+    
+    // === ВАЛИДАЦИЯ ===
+    if (name.length < 2) {
+      status.textContent = '❌ Введите имя (минимум 2 буквы)';
+      status.style.color = '#C9A06A';
+      return;
+    }
+    if (phone.length < 10) {
+      status.textContent = '❌ Введите корректный телефон (например: +7 900 123 45 67)';
+      status.style.color = '#C9A06A';
+      return;
+    }
+    
+    // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ:
+    const botToken = '8730249810:AAEQKF07ACejRjAZnnBv6kUM_N4jCd_w46w';
+    const chatId = '1193720669';
+    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyWO__wk8gtyGcjA4dlIpqm6siFK-2yOu55JIZMnMv_0YBj1p8QlhKJf5cuA5JKxHm_og/exec';
+    
+    const message = `✅ НОВАЯ ЗАЯВКА ЭГИДА
+━━━━━━━━━━━━━━━
+👤 Имя: ${name}
+📱 Телефон: ${phone}
+💬 Telegram: ${tg || 'не указан'}
+📅 Дата: ${new Date().toLocaleString('ru-RU')}
+━━━━━━━━━━━━━━━`;
+    
+    try {
+      status.textContent = '⏳ Отправка...';
+      status.style.color = '#BDB1A1';
+      
+      // 1. Отправка в Telegram
+      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text: message })
+      });
+      
+      // 2. Отправка в Google Таблицу
+      await fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, tg })
+      });
+      
+      status.textContent = '✅ Заявка отправлена! Я свяжусь с вами в ближайшее время.';
+      status.style.color = '#C9A06A';
+      document.getElementById('userName').value = '';
+      document.getElementById('userPhone').value = '';
+      document.getElementById('userTg').value = '';
+      
+    } catch (error) {
+      status.textContent = '❌ Ошибка. Попробуйте позже или напишите в Telegram @egida_kazan';
+      status.style.color = '#B8835A';
+    }
+  });
+</script>
+
+</body>
+</html>
