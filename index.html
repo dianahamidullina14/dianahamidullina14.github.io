@@ -535,6 +535,9 @@
       color:var(--ink);
       cursor:pointer;
       transition:transform .3s ease,border-color .3s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     .mm-close:hover{transform:rotate(90deg);border-color:var(--gold)}
     .lead-form input{flex:1 1 100%}
@@ -772,7 +775,7 @@
 <div id="formStatus" class="form-note">Или напишите в Instagram слово «ЭГИДА» — пришлём адрес и запишем на встречу</div>
 
 <div class="contacts reveal" data-delay="2" style="margin-top:34px">
-  <a href="https://www.instagram.com/egida.an?igsh=NjNsbnBienppM2Nr" target="_blank" rel="noopener"><svg><use href="#instagram"/></svg>@egida.kazan</a>
+  <a href="https://www.instagram.com/egida.an?igsh=NjNsbnBienppM2Nr" target="_blank" rel="noopener"><svg><use href="#instagram"/></svg>@egida.an</a>
   <a href="#top"><svg><use href="#pin"/></svg>Казань</a>
 </div>
 <div class="fbar">
@@ -829,11 +832,49 @@ updateProgress();
 window.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('resize', updateProgress);
 
+// ===== МОБИЛЬНОЕ МЕНЮ - ИСПРАВЛЕНО =====
 const menu = document.getElementById('mobileMenu');
+const burger = document.getElementById('burger');
+
+// Функция закрытия меню
 const closeMenu = () => menu.classList.remove('open');
-document.getElementById('burger').addEventListener('click', () => menu.classList.add('open'));
+
+// Функция открытия/закрытия меню (toggle)
+const toggleMenu = () => menu.classList.toggle('open');
+
+// Клик по бургеру — переключение
+burger.addEventListener('click', toggleMenu);
+
+// Закрытие по кнопке "крестик"
 document.getElementById('mmClose').addEventListener('click', closeMenu);
+
+// Закрытие при клике на ссылку в меню
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+// Закрытие при клике вне меню (по фону)
+menu.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeMenu();
+  }
+});
+
+// Закрытие по клавише Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && menu.classList.contains('open')) {
+    closeMenu();
+  }
+});
+
+// Блокировка скролла при открытом меню
+const body = document.body;
+const observerMenu = new MutationObserver(() => {
+  if (menu.classList.contains('open')) {
+    body.style.overflow = 'hidden';
+  } else {
+    body.style.overflow = '';
+  }
+});
+observerMenu.observe(menu, { attributes: true, attributeFilter: ['class'] });
 
 const io = new IntersectionObserver((entries) => {
 entries.forEach(e => {
@@ -869,7 +910,7 @@ if (phone.length < 10) {
 const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyWUF-oaY0itkYHLYpOCfoeNLI8k1CG2C0pbeveMeGsquk5qCibCKUf-k2OI5hGAP-N/exec';
 const url = `${googleScriptUrl}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&tg=${encodeURIComponent(tg)}`;
 
-status.textContent = '⏳ Отправка...';
+status.textContent = 'Отправка...';
 status.className = 'form-note';
 
 fetch(url, { method: 'GET' })
