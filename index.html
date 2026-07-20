@@ -166,6 +166,7 @@
     transition:border-color .3s ease,transform .3s ease;
     position:relative;
     padding:0;
+    z-index:61;
   }
   .burger svg{
     width:20px;
@@ -537,7 +538,10 @@
       pointer-events:none;
       transition:opacity .3s ease;
     }
-    .mobile-menu.open{opacity:1;pointer-events:auto}
+    .mobile-menu.open{
+      opacity:1;
+      pointer-events:auto;
+    }
     .mobile-menu a{
       font-family:var(--serif);
       font-size:30px;
@@ -545,25 +549,13 @@
       padding:10px;
       transition:transform .2s ease,color .2s ease;
     }
-    .mobile-menu a:hover{transform:scale(1.05);color:var(--gold-deep)}
-    .mobile-menu .btn{margin-top:18px}
-    .mm-close{
-      position:absolute;
-      top:22px;
-      right:22px;
-      width:44px;
-      height:44px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:none;
-      color:var(--ink);
-      cursor:pointer;
-      transition:transform .3s ease,border-color .3s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .mobile-menu a:hover{
+      transform:scale(1.05);
+      color:var(--gold-deep);
     }
-    .mm-close:hover{transform:rotate(90deg);border-color:var(--gold)}
+    .mobile-menu .btn{
+      margin-top:18px;
+    }
     .lead-form input{flex:1 1 100%}
     .lead-form button{width:100%;justify-content:center}
   }
@@ -606,15 +598,14 @@
 </div>
 </header>
 
-<!-- ===== МОБИЛЬНОЕ МЕНЮ ===== -->
+<!-- ===== МОБИЛЬНОЕ МЕНЮ (БЕЗ КРЕСТИКА) ===== -->
 <div class="mobile-menu" id="mobileMenu">
-<button class="mm-close" id="mmClose" aria-label="Закрыть"><svg width="20" height="20"><use href="#close"/></svg></button>
-<a href="#about">О компании</a>
-<a href="#philosophy">Философия</a>
-<a href="#directions">Направления</a>
-<a href="#ambassador">Амбассадор</a>
-<a href="#contacts">Контакты</a>
-<a href="#contacts" class="btn btn-gold">Присоединиться</a>
+  <a href="#about">О компании</a>
+  <a href="#philosophy">Философия</a>
+  <a href="#directions">Направления</a>
+  <a href="#ambassador">Амбассадор</a>
+  <a href="#contacts">Контакты</a>
+  <a href="#contacts" class="btn btn-gold">Присоединиться</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -863,25 +854,22 @@ updateProgress();
 window.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('resize', updateProgress);
 
-// ===== МОБИЛЬНОЕ МЕНЮ - ИСПРАВЛЕНО =====
+// ===== МОБИЛЬНОЕ МЕНЮ =====
 const menu = document.getElementById('mobileMenu');
 const burger = document.getElementById('burger');
 
-// Функция закрытия меню
 const closeMenu = () => {
   menu.classList.remove('open');
   burger.classList.remove('active');
   document.body.style.overflow = '';
 };
 
-// Функция открытия меню
 const openMenu = () => {
   menu.classList.add('open');
   burger.classList.add('active');
   document.body.style.overflow = 'hidden';
 };
 
-// Функция переключения
 const toggleMenu = () => {
   if (menu.classList.contains('open')) {
     closeMenu();
@@ -890,11 +878,7 @@ const toggleMenu = () => {
   }
 };
 
-// Клик по бургеру — переключение
 burger.addEventListener('click', toggleMenu);
-
-// Закрытие по кнопке "крестик"
-document.getElementById('mmClose').addEventListener('click', closeMenu);
 
 // Закрытие при клике на ссылку в меню
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
@@ -954,25 +938,25 @@ if (phone.length < 10) {
 const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyWUF-oaY0itkYHLYpOCfoeNLI8k1CG2C0pbeveMeGsquk5qCibCKUf-k2OI5hGAP-N/exec';
 const url = `${googleScriptUrl}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&tg=${encodeURIComponent(tg)}`;
 
-status.textContent = '⏳ Отправка...';
+status.textContent = 'Отправка...';
 status.className = 'form-note';
 
 fetch(url, { method: 'GET' })
 .then(response => response.text())
 .then(data => {
 if (data.includes('success') || data.includes('OK') || data.includes('ok')) {
-  status.textContent = '✅ Заявка отправлена! Мы свяжемся с вами.';
+  status.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
   status.className = 'form-note success';
   document.getElementById('userName').value = '';
   document.getElementById('userPhone').value = '';
   document.getElementById('userTg').value = '';
 } else {
-  status.textContent = '❌ Ошибка. Попробуйте позже.';
+  status.textContent = 'Ошибка. Попробуйте позже.';
   status.className = 'form-note error';
 }
 })
 .catch(() => {
-status.textContent = '❌ Ошибка. Проверьте интернет и попробуйте снова.';
+status.textContent = 'Ошибка. Проверьте интернет и попробуйте снова.';
 status.className = 'form-note error';
 });
 });
