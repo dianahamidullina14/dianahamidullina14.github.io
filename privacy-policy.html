@@ -202,25 +202,29 @@
             background: var(--paper);
         }
 
-        .requisites {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 30px;
+        .operator-card {
             background: var(--mist);
-            padding: 20px 24px;
-            border-radius: 12px;
+            padding: 24px 28px;
+            border-radius: 14px;
+            border-left: 4px solid var(--gold);
             margin: 16px 0 20px;
-            font-size: 14px;
+            font-size: 15px;
         }
 
-        .requisites .label {
+        .operator-card .line {
+            margin-bottom: 4px;
+        }
+
+        .operator-card .label {
             color: var(--muted);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: inline-block;
+            width: 70px;
         }
 
-        .requisites .value {
+        .operator-card .value {
             font-weight: 500;
             color: var(--ink);
         }
@@ -279,10 +283,12 @@
             .brand .name {
                 font-size: 19px;
             }
-            .requisites {
-                grid-template-columns: 1fr;
-                gap: 4px 0;
+            .operator-card {
                 padding: 16px 18px;
+            }
+            .operator-card .label {
+                width: 60px;
+                font-size: 11px;
             }
         }
 
@@ -449,9 +455,9 @@
             <p>Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.</p>
             <p>Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.</p>
             <p>Персональные данные Пользователя никогда, ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства, либо в случае, если субъектом персональных данных дано согласие Оператору на передачу данных третьему лицу для исполнения обязательств по договору.</p>
-            <p>В случае выявления неточностей в персональных данных, Пользователь может актуализировать их самостоятельно, путем направления Оператору уведомления на адрес электронной почты <a href="mailto:info@egida-an.ru" style="color:var(--gold-deep);text-decoration:underline;">info@egida-an.ru</a> с пометкой «Актуализация персональных данных».</p>
+            <p>В случае выявления неточностей в персональных данных, Пользователь может актуализировать их самостоятельно, путем направления Оператору уведомления на адрес электронной почты <a href="mailto:egida_sale@mail.ru" style="color:var(--gold-deep);text-decoration:underline;">egida_sale@mail.ru</a> с пометкой «Актуализация персональных данных».</p>
             <p>Срок обработки персональных данных определяется достижением целей, для которых были собраны персональные данные, если иной срок не предусмотрен договором или действующим законодательством.</p>
-            <p>Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на адрес <a href="mailto:info@egida-an.ru" style="color:var(--gold-deep);text-decoration:underline;">info@egida-an.ru</a> с пометкой «Отзыв согласия на обработку персональных данных».</p>
+            <p>Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на адрес <a href="mailto:egida_sale@mail.ru" style="color:var(--gold-deep);text-decoration:underline;">egida_sale@mail.ru</a> с пометкой «Отзыв согласия на обработку персональных данных».</p>
 
             <!-- ===== 9. ДЕЙСТВИЯ С ПЕРСОНАЛЬНЫМИ ДАННЫМИ ===== -->
             <h2>9. Действия с персональными данными</h2>
@@ -464,29 +470,38 @@
 
             <!-- ===== 11. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ ===== -->
             <h2>11. Заключительные положения</h2>
-            <p>Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору с помощью электронной почты <a href="mailto:info@egida-an.ru" style="color:var(--gold-deep);text-decoration:underline;">info@egida-an.ru</a>.</p>
+            <p>Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору с помощью электронной почты <a href="mailto:egida_sale@mail.ru" style="color:var(--gold-deep);text-decoration:underline;">egida_sale@mail.ru</a>.</p>
             <p>В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
             <p>Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу <a href="https://egida-an.ru/privacy-policy.html" style="color:var(--gold-deep);text-decoration:underline;">https://egida-an.ru/privacy-policy.html</a>.</p>
 
             <!-- ===== 12. РЕКВИЗИТЫ ОПЕРАТОРА ===== -->
             <h2>12. Реквизиты Оператора</h2>
-            <div class="requisites">
-                <div><span class="label">Полное наименование</span><br><span class="value">Индивидуальный предприниматель Сергеева Виктория Андреевна</span></div>
-                <div><span class="label">ИНН</span><br><span class="value">162403372609</span></div>
-                <div><span class="label">ОГРНИП</span><br><span class="value">319169000195132</span></div>
-                <div><span class="label">Расчетный счет</span><br><span class="value">40802810200002020810</span></div>
-                <div><span class="label">Банк</span><br><span class="value">АО «ТБанк»</span></div>
-                <div><span class="label">БИК банка</span><br><span class="value">044525974</span></div>
-                <div><span class="label">ИНН банка</span><br><span class="value">7710140679</span></div>
-                <div><span class="label">Корр. счет банка</span><br><span class="value">30101810145250000974</span></div>
-                <div style="grid-column: 1 / -1;"><span class="label">Юридический адрес</span><br><span class="value">420061, Россия, Республика Татарстан, г. Казань, ул. Разведчика Ахмерова, д. 7, кв. 137</span></div>
-                <div style="grid-column: 1 / -1;"><span class="label">Юридический адрес банка</span><br><span class="value">127287, г. Москва, ул. Хуторская 2-я, д. 38А, стр. 26</span></div>
-                <div style="grid-column: 1 / -1;"><span class="label">Email</span><br><span class="value"><a href="mailto:info@egida-an.ru" style="color:var(--gold-deep);text-decoration:underline;">info@egida-an.ru</a></span></div>
+
+            <div class="operator-card">
+                <div class="line">
+                    <span class="label">Оператор</span>
+                    <span class="value">Индивидуальный предприниматель Сергеева Виктория Андреевна</span>
+                </div>
+                <div class="line">
+                    <span class="label">Адрес</span>
+                    <span class="value">420061, Республика Татарстан, г. Казань, ул. Разведчика Ахмерова, д. 7, кв. 137</span>
+                </div>
+                <div class="line">
+                    <span class="label">ОГРНИП</span>
+                    <span class="value">319169000195132</span>
+                    <span style="color:var(--muted);margin:0 8px;">·</span>
+                    <span class="label">ИНН</span>
+                    <span class="value">162403372609</span>
+                </div>
+                <div class="line">
+                    <span class="label">Email</span>
+                    <span class="value"><a href="mailto:egida_sale@mail.ru" style="color:var(--gold-deep);text-decoration:underline;">egida_sale@mail.ru</a></span>
+                </div>
             </div>
 
             <div class="highlight">
                 <p><strong>Индивидуальный предприниматель Сергеева Виктория Андреевна</strong></p>
-                <p>Email: <a href="mailto:info@egida-an.ru" style="color:var(--gold-deep);text-decoration:underline;">info@egida-an.ru</a></p>
+                <p>Email: <a href="mailto:egida_sale@mail.ru" style="color:var(--gold-deep);text-decoration:underline;">egida_sale@mail.ru</a></p>
             </div>
 
             <div class="footer-note">
