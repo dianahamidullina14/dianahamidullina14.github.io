@@ -43,7 +43,7 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
-  body{font-family:var(--sans);color:var(--body);background:var(--paper);line-height:1.65;font-size:17px;font-weight:400;overflow-x:hidden}
+  body{font-family:var(--sans);color:var(--body);background:var(--paper);line-height:1.65;font-size:17px;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
   ::selection{background:var(--gold-soft);color:var(--ink)}
 
   .skip-link{
@@ -1049,7 +1049,7 @@ const params = new URLSearchParams({ name, phone, tg });
 
 fetch(googleScriptUrl, {
   method: 'POST',
-  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   body: params.toString()
 })
 .then(response => response.text())
@@ -1077,4 +1077,3 @@ status.className = 'form-note error';
 </script>
 </body>
 </html>
-
