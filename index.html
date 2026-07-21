@@ -6,6 +6,14 @@
 <title>ЭГИДА — агентство недвижимости и консалтинг · Казань</title>
 <meta name="description" content="ЭГИДА — агентство недвижимости и консалтинговая компания. Свободное сотрудничество агентов и защита в каждой сделке. Казань.">
 
+<!-- ===== OPEN GRAPH / SOCIAL SHARING ===== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ЭГИДА — агентство недвижимости и консалтинг · Казань">
+<meta property="og:description" content="Свободное сотрудничество агентов и защита в каждой сделке.">
+<meta property="og:image" content="logo.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+
 <!-- ===== ФАВИКОНКА (иконка в браузере) ===== -->
 <link rel="icon" type="image/svg+xml" href="main-logo.svg">
 <link rel="apple-touch-icon" href="main-logo.svg">
@@ -37,6 +45,21 @@
   html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
   body{font-family:var(--sans);color:var(--body);background:var(--paper);line-height:1.65;font-size:17px;font-weight:400;overflow-x:hidden}
   ::selection{background:var(--gold-soft);color:var(--ink)}
+
+  .skip-link{
+    position:absolute;
+    top:-100px;
+    left:16px;
+    z-index:100;
+    background:var(--ink);
+    color:#fff;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:14px;
+    transition:top .2s ease;
+  }
+  .skip-link:focus{top:16px}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
   .section{padding:clamp(72px,10vw,128px) 0}
@@ -131,6 +154,39 @@
   .form-note{font-size:14px;color:var(--muted);margin-top:2px;transition:color .3s ease}
   .form-note.success{color:var(--gold-deep)}
   .form-note.error{color:#946a34}
+
+  .lead-form button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none !important;
+  }
+  .consent{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    max-width:560px;
+    margin:2px 0 12px;
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+  }
+  .consent input{
+    margin-top:3px;
+    flex:none;
+    width:16px;
+    height:16px;
+    accent-color:var(--gold-deep);
+    cursor:pointer;
+  }
+  .consent label{cursor:pointer}
+  .consent a{color:var(--gold-deep);text-decoration:underline}
+  .hp-field{
+    position:absolute !important;
+    left:-9999px !important;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
 
   .scroll-progress{position:fixed;top:0;left:0;height:2.5px;width:0%;background:var(--grad-gold);z-index:80;transition:width .08s linear;box-shadow:0 0 8px rgba(198,162,94,.5)}
   .divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:clamp(36px,5vw,56px) 0}
@@ -575,12 +631,14 @@
 </head>
 <body>
 
+<a href="#top" class="skip-link">Перейти к содержимому</a>
+
 <!-- ===== HEADER ===== -->
 <div class="scroll-progress" id="scrollProgress"></div>
 <header id="header">
 <div class="wrap nav">
 <a href="#top" class="brand" aria-label="ЭГИДА — на главную">
-  <img class="mark" src="logo.png" alt="ЭГИДА">
+  <img class="mark" src="logo.png" alt="" width="29" height="33">
   <span class="name">ЭГИДА</span>
 </a>
 <nav class="navlinks">
@@ -592,7 +650,7 @@
 </nav>
 <div class="nav-cta">
   <a href="#contacts" class="btn btn-gold">Присоединиться <svg class="ar"><use href="#arrow"/></svg></a>
-  <button class="burger" id="burger" aria-label="Меню">
+  <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
     <svg class="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <path d="M4 7h16M4 12h16M4 17h16"/>
     </svg>
@@ -605,7 +663,7 @@
 </header>
 
 <!-- ===== МОБИЛЬНОЕ МЕНЮ (БЕЗ КРЕСТИКА) ===== -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Навигация по сайту">
   <a href="#about">О компании</a>
   <a href="#philosophy">Философия</a>
   <a href="#directions">Направления</a>
@@ -617,7 +675,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="top">
 <div class="hero-glow"></div>
-<img class="hero-shield" src="logo.png" alt="ЭГИДА">
+<img class="hero-shield" src="logo.png" alt="" aria-hidden="true" loading="lazy">
 <div class="wrap hero-inner">
 <div class="eyebrow" style="justify-content:center">Агентство недвижимости · Консалтинг · Казань</div>
 <h1 class="gold-text">ЭГИДА</h1>
@@ -641,7 +699,7 @@
   <p style="margin-top:18px">Юридическую защиту, сопровождение и поддержку на каждом этапе сделки компания берёт на себя.</p>
 </div>
 <div class="namecard reveal" data-delay="1">
-  <img class="emblem" src="logo.png" alt="ЭГИДА">
+  <img class="emblem" src="logo.png" alt="" aria-hidden="true" width="50" height="56" loading="lazy">
   <h3>Что значит «Эгида»</h3>
   <p>В греческой мифологии эгида — щит Зевса и Афины, символ защиты и покровительства.</p>
   <p class="promise">Мы выбрали это имя как обещание — защита в каждой сделке.</p>
@@ -650,7 +708,7 @@
 </section>
 
 <!-- ===== РАЗДЕЛИТЕЛЬ ===== -->
-<div class="wrap"><div class="divider reveal"><span class="dline"></span><img src="logo.png" alt="ЭГИДА"><span class="dline"></span></div></div>
+<div class="wrap"><div class="divider reveal"><span class="dline"></span><img src="logo.png" alt="" aria-hidden="true" width="20" height="20" loading="lazy"><span class="dline"></span></div></div>
 
 <!-- ===== ФИЛОСОФИЯ ===== -->
 <section class="section philo" id="philosophy">
@@ -765,7 +823,7 @@
 </section>
 
 <!-- ===== РАЗДЕЛИТЕЛЬ ===== -->
-<div class="wrap"><div class="divider reveal"><span class="dline"></span><img src="logo.png" alt="ЭГИДА"><span class="dline"></span></div></div>
+<div class="wrap"><div class="divider reveal"><span class="dline"></span><img src="logo.png" alt="" aria-hidden="true" width="20" height="20" loading="lazy"><span class="dline"></span></div></div>
 
 <!-- ===== АУДИТОРИЯ ===== -->
 <section class="section" id="audience" style="background:var(--mist)">
@@ -794,25 +852,32 @@
 
 <!-- ===== ФУТЕР С ФОРМОЙ ===== -->
 <footer class="footer" id="contacts">
-<img class="fshield" src="logo.png" alt="ЭГИДА">
+<img class="fshield" src="logo.png" alt="" aria-hidden="true" loading="lazy">
 <div class="wrap">
 <h2 class="cta-h reveal">Работайте свободно.<br><span class="gold-text">Защиту берём на себя.</span></h2>
 
 <!-- ===== ФОРМА ЗАЯВКИ ===== -->
-<form class="lead-form reveal" data-delay="1" id="egidaForm">
-  <input type="text" id="userName" placeholder="Ваше имя" required>
-  <input type="tel" id="userPhone" placeholder="Телефон" required>
-  <input type="text" id="userTg" placeholder="Telegram (необязательно)">
+<form class="lead-form reveal" data-delay="1" id="egidaForm" novalidate>
+  <input type="text" id="userName" placeholder="Ваше имя" autocomplete="name" required>
+  <input type="tel" id="userPhone" placeholder="Телефон" autocomplete="tel" required>
+  <input type="text" id="userTg" placeholder="Telegram (необязательно)" autocomplete="off">
+  <!-- honeypot: скрытое от людей поле-ловушка для ботов -->
+  <input type="text" id="userWebsite" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
   <button type="submit">Оставить заявку <svg class="ar"><use href="#arrow"/></svg></button>
 </form>
-<div id="formStatus" class="form-note">Или напишите в Instagram слово «ЭГИДА» — пришлём адрес и запишем на встречу</div>
+<div class="consent">
+  <input type="checkbox" id="userConsent" required>
+  <!-- TODO: заменить href="#" на реальную ссылку на страницу политики конфиденциальности -->
+  <label for="userConsent">Согласен(на) на обработку персональных данных в соответствии с <a href="#" id="privacyLink">политикой конфиденциальности</a></label>
+</div>
+<div id="formStatus" class="form-note" role="status" aria-live="polite">Или напишите в Instagram слово «ЭГИДА» — пришлём адрес и запишем на встречу</div>
 
 <div class="contacts reveal" data-delay="2" style="margin-top:34px">
   <a href="https://www.instagram.com/egida.an?igsh=NjNsbnBienppM2Nr" target="_blank" rel="noopener"><svg><use href="#instagram"/></svg>@egida.an</a>
   <a href="#top"><svg><use href="#pin"/></svg>Казань</a>
 </div>
 <div class="fbar">
-  <span class="fbrand"><img src="logo.png" alt="ЭГИДА"> ЭГИДА</span>
+  <span class="fbrand"><img src="logo.png" alt="" aria-hidden="true" width="19" height="19" loading="lazy"> ЭГИДА</span>
   <span>Агентство недвижимости и консалтинг · Казань · <span id="year"></span></span>
 </div>
 </div>
@@ -872,12 +937,16 @@ const burger = document.getElementById('burger');
 const closeMenu = () => {
   menu.classList.remove('open');
   burger.classList.remove('active');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Открыть меню');
   document.body.style.overflow = '';
 };
 
 const openMenu = () => {
   menu.classList.add('open');
   burger.classList.add('active');
+  burger.setAttribute('aria-expanded', 'true');
+  burger.setAttribute('aria-label', 'Закрыть меню');
   document.body.style.overflow = 'hidden';
 };
 
@@ -930,37 +999,68 @@ document.getElementById('year').textContent = new Date().getFullYear();
 document.getElementById('egidaForm').addEventListener('submit', function(e) {
 e.preventDefault();
 
-const name = document.getElementById('userName').value.trim();
-const phone = document.getElementById('userPhone').value.trim();
-const tg = document.getElementById('userTg').value.trim();
+const nameField = document.getElementById('userName');
+const phoneField = document.getElementById('userPhone');
+const tgField = document.getElementById('userTg');
+const consentField = document.getElementById('userConsent');
+const honeypot = document.getElementById('userWebsite');
 const status = document.getElementById('formStatus');
+const submitBtn = this.querySelector('button[type="submit"]');
+
+const name = nameField.value.trim();
+const phone = phoneField.value.trim();
+const tg = tgField.value.trim();
+
+// Ловушка для ботов: если скрытое поле заполнено — это не человек,
+// но мы делаем вид, что всё прошло успешно, чтобы не спугнуть бота
+if (honeypot.value.trim() !== '') {
+  status.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
+  status.className = 'form-note success';
+  this.reset();
+  return;
+}
 
 if (name.length < 2) {
   status.textContent = 'Введите имя (минимум 2 буквы)';
   status.className = 'form-note error';
+  nameField.focus();
   return;
 }
 if (phone.length < 10) {
   status.textContent = 'Введите корректный телефон (например: +7 900 123 45 67)';
   status.className = 'form-note error';
+  phoneField.focus();
+  return;
+}
+if (!consentField.checked) {
+  status.textContent = 'Нужно согласие на обработку персональных данных';
+  status.className = 'form-note error';
+  consentField.focus();
   return;
 }
 
 const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyWUF-oaY0itkYHLYpOCfoeNLI8k1CG2C0pbeveMeGsquk5qCibCKUf-k2OI5hGAP-N/exec';
-const url = `${googleScriptUrl}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&tg=${encodeURIComponent(tg)}`;
 
 status.textContent = 'Отправка...';
 status.className = 'form-note';
+submitBtn.disabled = true;
 
-fetch(url, { method: 'GET' })
+const params = new URLSearchParams({ name, phone, tg });
+
+fetch(googleScriptUrl, {
+  method: 'POST',
+  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+  body: params.toString()
+})
 .then(response => response.text())
 .then(data => {
 if (data.includes('success') || data.includes('OK') || data.includes('ok')) {
   status.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
   status.className = 'form-note success';
-  document.getElementById('userName').value = '';
-  document.getElementById('userPhone').value = '';
-  document.getElementById('userTg').value = '';
+  nameField.value = '';
+  phoneField.value = '';
+  tgField.value = '';
+  consentField.checked = false;
 } else {
   status.textContent = 'Ошибка. Попробуйте позже.';
   status.className = 'form-note error';
@@ -969,8 +1069,12 @@ if (data.includes('success') || data.includes('OK') || data.includes('ok')) {
 .catch(() => {
 status.textContent = 'Ошибка. Проверьте интернет и попробуйте снова.';
 status.className = 'form-note error';
+})
+.finally(() => {
+  submitBtn.disabled = false;
 });
 });
 </script>
 </body>
 </html>
+
