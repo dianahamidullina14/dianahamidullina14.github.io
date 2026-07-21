@@ -333,6 +333,7 @@
   .head-block{max-width:640px;margin-bottom:clamp(40px,5vw,62px)}
   .head-block p{margin-top:16px;color:var(--body)}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
   .card{
     background:var(--paper);
     border:1px solid var(--line);
@@ -515,12 +516,17 @@
     html{scroll-behavior:auto}
   }
 
+  @media (max-width:1100px) and (min-width:901px){
+    .grid-4{grid-template-columns:repeat(2,1fr)}
+  }
+
   @media (max-width:900px){
     .navlinks{display:none}
     .nav-cta .btn{display:none}
     .burger{display:inline-flex}
     .about-grid{grid-template-columns:1fr;gap:40px}
     .grid-3{grid-template-columns:1fr;gap:18px}
+    .grid-4{grid-template-columns:1fr;gap:18px}
     .tiers{grid-template-columns:1fr}
     .aud-grid{grid-template-columns:1fr}
     .mobile-menu{
@@ -665,21 +671,26 @@
   <div class="eyebrow"><svg class="dot"><use href="#shield"/></svg>Ценности</div>
   <h2>На чём стоит ЭГИДА</h2>
 </div>
-<div class="grid-3">
+<div class="grid-4">
   <div class="card reveal">
-    <div class="ic-circle"><svg><use href="#unlock"/></svg></div>
-    <h3>Свобода</h3>
-    <p>Автономия и свободное сотрудничество. Агент сам выбирает, как строить свою работу.</p>
+    <div class="ic-circle"><svg><use href="#shield"/></svg></div>
+    <h3>Доверие</h3>
+    <p>Прозрачные условия, фиксированные правила. Агент знает, на что идёт — и ничего не меняется на ходу.</p>
   </div>
   <div class="card reveal" data-delay="1">
-    <div class="ic-circle"><svg><use href="#eye"/></svg></div>
-    <h3>Прозрачность</h3>
-    <p>Понятные условия без скрытых правил. Справедливая и честная модель сотрудничества.</p>
+    <div class="ic-circle"><svg><use href="#handshake"/></svg></div>
+    <h3>Профессиональный рост</h3>
+    <p>Сильное окружение и экспертиза рядом. Здесь развиваются, а не просто работают.</p>
   </div>
   <div class="card reveal" data-delay="2">
-    <div class="ic-circle"><svg><use href="#shield"/></svg></div>
-    <h3>Защита</h3>
-    <p>Юридическая поддержка и сопровождение на каждом этапе — в каждой сделке.</p>
+    <div class="ic-circle"><svg><use href="#usertie"/></svg></div>
+    <h3>Сообщество</h3>
+    <p>Круг сильных профессионалов, которые не конкурируют, а поддерживают.</p>
+  </div>
+  <div class="card reveal" data-delay="3">
+    <div class="ic-circle"><svg><use href="#lifebuoy"/></svg></div>
+    <h3>Экспертиза</h3>
+    <p>Юрист, брокер, сопровождение — не нужно искать, всё уже внутри.</p>
   </div>
 </div>
 </div>
